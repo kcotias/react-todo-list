@@ -22,7 +22,7 @@ function todos(state = [], action) {
   switch (action.type) {
     case REMOVE_TODO:{
           let newState = state.slice();
-          newState.splice(action.index);
+          newState.splice(action.index, 1);
           return newState;
     }
     case ADD_TODO:{
