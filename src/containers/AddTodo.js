@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { addTodo } from '../redux/actions'
-import TextField from '@material-ui/core/TextField';
 
 
 let AddTodo = ({ dispatch }) => {
@@ -11,6 +10,7 @@ let AddTodo = ({ dispatch }) => {
 
   return (
     <div className={'addToDo'}>
+      <h1 className={'maintitle'}>TODO LIST</h1>
       <form
         onSubmit={e => {
           e.preventDefault()
@@ -21,17 +21,11 @@ let AddTodo = ({ dispatch }) => {
           input.value = ''
         }}
       >
-        
-       
-      <TextField
-        inputRef={node => {
-          input = node
-        }}
-        className={'mainInput'}
-        label="Digite uma tarefa!"
-        variant="outlined"
-        id="custom-css-outlined-input"
-      />
+        <input 
+          ref={node => (input = node)}
+          className={'mainInput'}
+          placeholder={'Adicione um item'}
+        />
       </form>
     </div>
   )

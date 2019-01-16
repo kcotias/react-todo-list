@@ -2,6 +2,8 @@ import { combineReducers } from 'redux'
 import {
   ADD_TODO,
   REMOVE_TODO,
+  CHANGE_TODO,
+  EDIT_TODO,
   TOGGLE_TODO,
   SET_VISIBILITY_FILTER,
   VisibilityFilters
@@ -30,9 +32,31 @@ function todos(state = [], action) {
         ...state,
         {
           text: action.text,
-          completed: false
+          completed: false,
+          isInEdit: false
         }
       ]}
+    
+    case CHANGE_TODO:{
+      return state.map((todo, index) => {
+        if (index === action.index) {
+          return Object.assign({}, todo, {
+            text: action.text,
+          })
+        }
+        return todo
+      })}
+
+    case EDIT_TODO: {
+      return state.map((todo, index) => {
+        if (index === action.index) {
+          return Object.assign({}, todo, {
+            isInEdit: !todo.isInEdit
+          })
+        }
+        return todo
+      })}
+
     case TOGGLE_TODO:{
       return state.map((todo, index) => {
         if (index === action.index) {
